@@ -24,7 +24,7 @@ void setup(;)
     ;
 
   dht.begin();
-  Serial.println("Fin setup");
+  Serial.println("ESP32-ThingsboardPowerMeter");
 }
 
 void loop()
