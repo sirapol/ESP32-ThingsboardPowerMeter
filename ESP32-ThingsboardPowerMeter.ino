@@ -1,21 +1,48 @@
+//  ______ _       _               ______ _           _                   _          
+// |  ____| |     | |             |  ____| |         | |                 (_)         
+// | |__  | |_   _| | _____       | |__  | | ___  ___| |_ _ __ ___  _ __  _  ___ ___ 
+// |  __| | | | | | |/ / _ \      |  __| | |/ _ \/ __| __| '__/ _ \| '_ \| |/ __/ __|
+// | |    | | |_| |   <  __/      | |____| |  __/ (__| |_| | | (_) | | | | | (__\__ \
+// |_|    |_|\__,_|_|\_\___|      |______|_|\___|\___|\__|_|  \___/|_| |_|_|\___|___/
+//
+// Youtube channel : Fluke Electronics 
+// Facebook page : ฟลุ๊คการไฟฟ้า
+
+
+
+// OTA and WiFi
+#include <WiFi.h>
+#include <ESPmDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
+
+WiFiClient espClient;
+ThingsBoard tb(espClient);
+int status = WL_IDLE_STATUS;
+bool subscribed = false;
+const char *ssid = "injectorhome_2.4GHz";
+const char *password = "sirapols0422";
+
+// Thingsboard
+#include <ThingsBoard.h>
+#define THINGSBOARD_SERVER "192.168.1.25"
+#define TOKEN "vA60qMrhtEzIX2LoddSN"
+
+
+// DHT
 #include "DHT.h"
-
-#define RXD2 16
-#define TXD2 17
-
-#define SDA_OLED 5
-#define SCL_OLED 4
-
 #define DHTPIN 5
 #define DHTTYPE DHT22
-
 DHT dht(DHTPIN, DHTTYPE);
 
+// PZEM-004T
+#define RXD2 16
+#define TXD2 17
 int requestCount = 0;
 unsigned long timeOut = millis();
 uint8_t bufferModbus[25];
 
-void setup(;)
+void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -24,6 +51,7 @@ void setup(;)
     ;
 
   dht.begin();
+  Serial.println("-------------------------");
   Serial.println("ESP32-ThingsboardPowerMeter");
 }
 
